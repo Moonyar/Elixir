@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>cfl Submitted</title>
+    {% include 'bootstrap.html' %}
+</head>
+<body>
+{% include 'nav.html' %}
+
+<b >Your cfl has been submitted!</b><br>
+
+<b>Partner Name</b>
+<div class="mb-2">{{cfl['partner']}}</div>
+
+<b>Leader Name</b>
+<div class="mb-2">{{cfl['leader']}}</div>
+
+<b>Item</b>
+<div class="mb-2">{{cfl['item']}}</div>
+
+<b>Reason</b>
+<div class="mb-2">{{cfl['reason']}}</div>
+
+<b>Breakdown</b>
+<div class="mb-2">{{cfl['breakdown']}}</div>
+
+<b>Solution</b>
+<div class="mb-2">{{cfl['solution']}}</div>
+
+    <b>Date</b>
+<div class="mb-2">{{cfl['created_at']}}</div>
+
+</body>
+
+
+</html>
