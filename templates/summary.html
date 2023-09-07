@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Summary</title>
+  {% include 'bootstrap.html' %}
+</head>
+<body>
+{% include 'nav.html' %}
+<div class="mx-auto mt-5" style="width: 800px;">
+  <form action="/summary/submit" method="post">
+    <div class="mb-3">
+    <label for="Leaders">Leaders</label>
+    <input type="text" id="Leaders" name="Leaders" required><br>
+    </div>
+    <div class="mb-3">
+    <label for="summary">Summary</label>
+    <textarea type="text" id="summary" name="summary" required></textarea><br>
+    </div>
+    <input type="submit"class="btn btn-primary mt-3">
+  </form>
+</div>
+
+</body>
+</html>

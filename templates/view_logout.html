@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Logout View</title>
+  {% include 'bootstrap.html' %}
+</head>
+<body>
+  {% include 'nav.html' %}
+
+  <h1 class="text-center">Birdies TODO(PM/AM) Logout</h1><br>
+
+  <h3 class="text-center">TODO - Summary (Leader names)</h3>
+
+  <h3 class="text-center">TODO - Sales & Labour</h3>
+
+  <h3 class="text-center">CFLs</h3>
+    <div class="table-responsive mx-3">
+<table class="table table-bordered">
+    <tr>
+      <th>CFL ID</th>
+      <th>Partner Name</th>
+      <th>Leader Name</th>
+      <th>Item</th>
+      <th>Reason</th>
+      <th>Breakdown</th>
+      <th>Solution</th>
+      <th>Date</th>
+      <th>Action</th>
+
+        <!-- Add other columns as needed -->
+    </tr>
+    {% for cfl in cfls %}
+    <tr>
+      <td>{{ cfl.id }}</td>
+      <td>{{ cfl.partner }}</td>
+      <td>{{ cfl.leader }}</td>
+      <td>{{ cfl.item }}</td>
+      <td>{{ cfl.reason }}</td>
+      <td>{{ cfl.breakdown }}</td>
+      <td>{{ cfl.solution }}</td>
+      <td>{{ cfl.updated_at }}</td>
+        <!-- Add other columns as needed -->
+      <td>
+                <a href="{{ url_for('edit_cfl', cfl_id=cfl.id) }}" class="btn btn-primary btn-sm">Edit</a>
+            </td>
+    </tr>
+    {% endfor %}
+</table>
+  </div>
+
+  <h3 class="text-center">TODO - Transition Notes</h3>
+
+  <h3 class="text-center">TODO - People</h3>
+
+  <h3 class="text-center">TODO - Environment</h3>
+
+  <h3 class="text-center">TODO - FOH Waste</h3>
+</body>
+</html>

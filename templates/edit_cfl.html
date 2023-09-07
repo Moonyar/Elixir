@@ -1,0 +1,18 @@
+<head>
+    <meta charset="UTF-8">
+    <title>Logout</title>
+  {% include 'bootstrap.html' %}
+</head>
+<body>
+{% include 'nav.html' %}
+<form action="/cfl/edit" method="POST">
+    <!-- Example input for 'Partner' -->
+    <label for="partner">Partner:</label>
+    <input type="text" id="partner" name="partner" value="{{ cfl.partner }}">
+    <!-- Add other input fields for each attribute... -->
+
+    <input type="submit" value="Update">
+</form>
+
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Logout</title>
+  {% include 'bootstrap.html' %}
+</head>
+<body>
+{% include 'nav.html' %}
+<div class="mx-auto mt-5" style="width: 800px;">
+<form action="/logout/view" method="post">
+    <label for="start_date">Start Date:</label>
+    <input type="datetime-local" id="start_date" name="start_date" required>
+
+    <label for="end_date">End Date:</label>
+    <input type="datetime-local" id="end_date" name="end_date" required>
+
+    <input type="submit" value="Fetch Records" class="btn btn-primary">
+</form>
+    </div>
+</body>
+</html>
