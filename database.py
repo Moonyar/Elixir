@@ -81,3 +81,9 @@ def update_cfl(cfl_id, data):
             "breakdown": data['breakdown'],
             "solution": data['solution']
         })
+
+
+def delete_cfl(cfl_id):
+    with engine.connect() as conn:
+        query = text("DELETE FROM cfls WHERE id = :cfl_id")
+        conn.execute(query, {"cfl_id": cfl_id})
