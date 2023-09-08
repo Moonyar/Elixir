@@ -31,36 +31,47 @@ def confirmed_cfl():
     cfl = load_cfl(cfl_id)
     return render_template('cfl_submit.html', cfl=cfl)
 
-@app.route("/cfl/<cfl_id>/edit", methods=['POST','GET'])
+
+@app.route("/cfl/<cfl_id>/edit", methods=['POST', 'GET'])
 def edit_cfl(cfl_id):
     cfl = load_cfl(cfl_id)
     return render_template('cfl_edit.html', cfl=cfl)
+
 
 @app.route("/cfl/edit/<cfl_id>/submit", methods=['POST'])
 def submit_edited_cfl(cfl_id):
     data = request.form
     cfl = load_cfl(cfl_id)
     update_cfl(cfl_id, data)
-    cfl= load_cfl(cfl_id)
+    cfl = load_cfl(cfl_id)
     return render_template('cfl_submit.html', cfl=cfl)
 
-@app.route("/cfl/<cfl_id>/delete", methods=['POST'])
+
+@app.route("/cfl/<cfl_id>/delete", methods=['POST', 'GET'])
 def cfl_delete(cfl_id):
+    start_date = request.args.get('start_date')
+    end_date = request.args.get('end_date')
     delete_cfl(cfl_id)
     flash("CFL deleted successfully!")
-    return redirect(url_for('home'))
+    return redirect(url_for('view_logout', start_date=start_date, end_date=end_date))
 
-@app.route("/logout/view", methods=['post'])
+
+@app.route("/logout/view", methods=['post', 'GET'])
 def view_logout():
-    start_date = request.form.get('start_date')
-    end_date = request.form.get('end_date')
+    if request.method == 'POST':
+        start_date = request.form.get('start_date')
+        end_date = request.form.get('end_date')
+    else:
+        start_date = request.args.get('start_date')
+        end_date = request.args.get('end_date')
 
-    start_date = datetime.strptime(start_date, '%Y-%m-%dT%H:%M')
-    end_date = datetime.strptime(end_date, '%Y-%m-%dT%H:%M')
+    start_date = datetime.strptime(start_date, '%Y-%m-%d %H:%M:%S')
+    end_date = datetime.strptime(end_date, '%Y-%m-%d %H:%M:%S')
 
     cfls = get_all_cfls(start_date, end_date)
 
-    return render_template('view_logout.html', cfls=cfls)
+    return render_template('view_logout.html', cfls=cfls, start_date=start_date,
+                            end_date=end_date)
 
 
 @app.route("/logout")
