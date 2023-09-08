@@ -1,9 +1,11 @@
+import os
 from datetime import datetime
 
 from flask import Flask, render_template, jsonify, request, url_for, redirect, flash
-from database import load_cfl, add_cfl, get_all_cfls, update_cfl
+from database import load_cfl, add_cfl, get_all_cfls, update_cfl, delete_cfl
 
 app = Flask(__name__)
+app.secret_key = os.environ.get('FLASK_SECRET_KEY')
 
 
 @app.route("/")
@@ -41,6 +43,12 @@ def submit_edited_cfl(cfl_id):
     update_cfl(cfl_id, data)
     cfl= load_cfl(cfl_id)
     return render_template('cfl_submit.html', cfl=cfl)
+
+@app.route("/cfl/<cfl_id>/delete", methods=['POST'])
+def cfl_delete(cfl_id):
+    delete_cfl(cfl_id)
+    flash("CFL deleted successfully!")
+    return redirect(url_for('home'))
 
 @app.route("/logout/view", methods=['post'])
 def view_logout():
