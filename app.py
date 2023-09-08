@@ -27,7 +27,7 @@ def confirmed_cfl():
     data = request.form
     cfl_id = add_cfl(data)
     cfl = load_cfl(cfl_id)
-    return render_template('cfl_confirmed.html', cfl=cfl)
+    return render_template('cfl_submit.html', cfl=cfl)
 
 @app.route("/cfl/<cfl_id>/edit", methods=['POST','GET'])
 def edit_cfl(cfl_id):
