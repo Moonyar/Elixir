@@ -1,7 +1,7 @@
 import os
 from datetime import datetime
 
-from flask import Flask, render_template, jsonify, request, url_for, redirect, flash
+from flask import Flask, render_template, jsonify, request, url_for, redirect, flash, get_flashed_messages
 from database import load_cfl, add_cfl, get_all_cfls, update_cfl, delete_cfl
 
 app = Flask(__name__)
@@ -80,7 +80,11 @@ def view_logout():
 
     cfls = get_all_cfls(start_date, end_date)
 
-    return render_template('view_logout.html', cfls=cfls, start_date=start_date,
+    if not cfls:
+        flash("No CFLs found for the specified date range.", "warning")
+        return redirect(url_for('logout'))
+    else:
+        return render_template('view_logout.html', cfls=cfls, start_date=start_date,
                            end_date=end_date)
 
 
