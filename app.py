@@ -81,7 +81,7 @@ def view_logout():
     cfls = get_all_cfls(start_date, end_date)
 
     return render_template('view_logout.html', cfls=cfls, start_date=start_date,
-                            end_date=end_date)
+                           end_date=end_date)
 
 
 @app.route("/logout")

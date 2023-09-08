@@ -31,6 +31,7 @@ def load_cfl(id):
 
 def add_cfl(data):
     with engine.connect() as conn:
+        conn.execute(text("SET time_zone = 'America/Vancouver'"))
         query = text(
             "INSERT INTO cfls (partner, leader, item , reason, breakdown, solution) VALUES (:partner_name, :leader_name, :item, :reason, :breakdown, :solution)")
 
@@ -61,6 +62,7 @@ def get_all_cfls(start_date, end_date):
 
 def update_cfl(cfl_id, data):
     with engine.connect() as conn:
+        conn.execute(text("SET time_zone = 'America/Vancouver'"))
         query = text("""
             UPDATE cfls SET 
             partner = :partner_name, 
