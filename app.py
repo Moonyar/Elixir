@@ -23,13 +23,21 @@ def show_cfl(id):
 
 
 @app.route("/cfl/submit", methods=['POST'])
-def submit_cfl():
+def confirmed_cfl():
     data = request.form
     cfl_id = add_cfl(data)
     cfl = load_cfl(cfl_id)
     return render_template('cfl_confirmed.html', cfl=cfl)
 
+@app.route("/cfl/<cfl_id>/edit", methods=['POST','GET'])
+def edit_cfl(cfl_id):
+    cfl = load_cfl(cfl_id)
+    return render_template('cfl_edit.html', cfl=cfl)
 
+@app.route("/cfl/submit", methods=['POST'])
+def submit_edited_cfl(cfl_id):
+    data = request.form
+    cfl = cfl_id
 
 @app.route("/logout/view", methods=['post'])
 def view_logout():
