@@ -30,22 +30,6 @@ def submit_cfl():
     return render_template('cfl_confirmed.html', cfl=cfl)
 
 
-@app.route("/cfl/edit/<int:cfl_id>", methods=['GET', 'POST'])
-def edit_cfl(cfl_id):
-    # Retrieve the record by ID
-    cfl = load_cfl(cfl_id)  # You'll need to define this function
-    if not cfl:
-        # Provide a flash message or some error to the user to indicate the problem.
-        # You can use Flask's flash function for this.
-        flash('CFL not found!', 'error')
-
-    if request.method == 'POST':
-        # Here you handle the updating of the record
-        update_cfl(cfl_id, request.form)
-        return redirect(url_for('/logout/view'))# or wherever you want to redirect after editing
-
-    return render_template('edit_cfl.html', cfl=cfl)
-
 
 @app.route("/logout/view", methods=['post'])
 def view_logout():
