@@ -53,7 +53,10 @@ def cfl_delete(cfl_id):
     end_date = request.args.get('end_date')
     delete_cfl(cfl_id)
     flash("CFL deleted successfully!")
-    return redirect(url_for('view_logout', start_date=start_date, end_date=end_date))
+    if start_date and end_date:
+        return redirect(url_for('view_logout', start_date=start_date, end_date=end_date))
+    else:
+        return redirect(url_for('cfl'))
 
 
 @app.route("/logout/view", methods=['post', 'GET'])
@@ -65,8 +68,15 @@ def view_logout():
         start_date = request.args.get('start_date')
         end_date = request.args.get('end_date')
 
-    start_date = datetime.strptime(start_date, '%Y-%m-%d %H:%M:%S')
-    end_date = datetime.strptime(end_date, '%Y-%m-%d %H:%M:%S')
+    if "T" in start_date:
+        start_date = datetime.strptime(start_date, '%Y-%m-%dT%H:%M')
+    else:
+        start_date = datetime.strptime(start_date, '%Y-%m-%d %H:%M:%S')
+
+    if "T" in end_date:
+        end_date = datetime.strptime(end_date, '%Y-%m-%dT%H:%M')
+    else:
+        end_date = datetime.strptime(end_date, '%Y-%m-%d %H:%M:%S')
 
     cfls = get_all_cfls(start_date, end_date)
 
