@@ -27,9 +27,11 @@ def submit_cfl():
     data = request.form
     cfl_id = add_cfl(data)
     cfl = load_cfl(cfl_id)
-    return render_template('cfl_confirmed.html', cfl=cfl)
+    return render_template('cfl_submit.html', cfl=cfl)
 
-
+@app.route("/cfl/edit", methods=['POST'])
+def edit_cfl(cfl_id):
+    cfl = cfl_id
 
 @app.route("/logout/view", methods=['post'])
 def view_logout():
