@@ -34,10 +34,13 @@ def edit_cfl(cfl_id):
     cfl = load_cfl(cfl_id)
     return render_template('cfl_edit.html', cfl=cfl)
 
-@app.route("/cfl/submit", methods=['POST'])
+@app.route("/cfl/edit/<cfl_id>/submit", methods=['POST'])
 def submit_edited_cfl(cfl_id):
     data = request.form
-    cfl = cfl_id
+    cfl = load_cfl(cfl_id)
+    update_cfl(cfl_id, data)
+    cfl= load_cfl(cfl_id)
+    return render_template('cfl_submit.html', cfl=cfl)
 
 @app.route("/logout/view", methods=['post'])
 def view_logout():
