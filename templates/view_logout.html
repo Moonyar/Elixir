@@ -26,7 +26,6 @@
       <th>Breakdown</th>
       <th>Solution</th>
       <th>Date</th>
-      <th>Action</th>
 
         <!-- Add other columns as needed -->
     </tr>
@@ -41,9 +40,6 @@
       <td>{{ cfl.solution }}</td>
       <td>{{ cfl.updated_at }}</td>
         <!-- Add other columns as needed -->
-      <td>
-                <a href="{{ url_for('edit_cfl', cfl_id=cfl.id) }}" class="btn btn-primary btn-sm">Edit</a>
-            </td>
     </tr>
     {% endfor %}
 </table>
