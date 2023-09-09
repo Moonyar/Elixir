@@ -52,7 +52,6 @@ def cfl_delete(cfl_id):
     start_date = request.args.get('start_date')
     end_date = request.args.get('end_date')
     delete_cfl(cfl_id)
-    flash("CFL deleted successfully!")
     if start_date and end_date:
         return redirect(url_for('view_logout', start_date=start_date, end_date=end_date))
     else:

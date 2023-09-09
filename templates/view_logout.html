@@ -66,6 +66,34 @@
                     </div>
                 </div>
             </div>
+            <!-- Edit button -->
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#edit{{ cfl.id }}">
+                 Edit
+            </button>
+            <!-- Modal for edit -->
+            <div class="modal fade" id="edit{{ cfl.id }}" tabindex="-1" aria-labelledby="editLabel{{ cfl.id }}"
+                 aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="editLabel{{ cfl.id }}">Edit CFL</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <form action="{{ url_for('edit_cfl', cfl_id=cfl.id) }}"
+                              method="post">
+                            <div class="modal-body">
+                                Are you sure you want to edit this CFL?
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary">Go to Edit page</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+
         </td>
     </tr>
     {% endfor %}
