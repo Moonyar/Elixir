@@ -80,7 +80,7 @@ def view_logout():
     cfls = get_all_cfls(start_date, end_date)
 
     if not cfls:
-        flash("No CFLs found for the specified date range.", "warning")
+        flash("No CFLs found for the specified date range.", "cfl_warning")
         return redirect(url_for('logout'))
     else:
         return render_template('view_logout.html', cfls=cfls, start_date=start_date,
