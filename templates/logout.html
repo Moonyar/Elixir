@@ -7,15 +7,19 @@
 </head>
 <body>
 {% include 'nav.html' %}
-<div class="mx-auto mt-5" style="width: 800px;">
+<div class="mx-auto mt-5 container-fluid text-center">
 <form action="/logout/view" method="post">
+    <div class="mb-3">
     <label for="start_date">Start Date:</label>
-    <input type="datetime-local" id="start_date" name="start_date" required>
-
-    <label for="end_date">End Date:</label>
-    <input type="datetime-local" id="end_date" name="end_date" required>
-
+    <input type="datetime-local" id="start_date" name="start_date" required><br>
+    </div>
+    <div class="mb-3">
+    <label for="end_date">End Date :&nbsp</label>
+    <input type="datetime-local" id="end_date" name="end_date" required><br>
+    </div>
+    <div class="mb-3">
     <input type="submit" value="Fetch Records" class="btn btn-primary">
+    </div>
 </form>
     </div>
 <div>{% with messages = get_flashed_messages(with_categories=true) %}
