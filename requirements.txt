@@ -4,3 +4,4 @@ PyMySQL
 python-dotenv
 gunicorn
 werkzeug
+flask_login
