@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 
+
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,7 +12,7 @@
 
 <body>
     <div style="max-width: 400px; margin: 50px auto; padding: 20px; border: 1px solid #ccc; box-shadow: 2px 2px 12px #aaa;">
-        <h2>Login</h2>
+        <img src="/static/elixirlogo.png" style="margin-left:80px; margin-top: 50px;">
 
         <!-- Display flashed messages from Flask -->
         {% with messages = get_flashed_messages(with_categories=true) %}
@@ -27,18 +29,18 @@
         {% endif %}
         {% endwith %}
 
-        <form action="{{ url_for('login') }}" method="post">
+        <form action="{{ url_for('login') }}" method="post" class="text-center" style="max-width: 400px; margin: 50px auto; padding: 20px;">
             <div class="form-group">
-                <label for="username">Username:</label>
+                <label for="username">Username</label>
                 <input type="text" id="username" name="username" class="form-control" required>
             </div>
 
             <div class="form-group">
-                <label for="password">Password:</label>
+                <label for="password">Password</label>
                 <input type="password" id="password" name="password" class="form-control" required>
             </div>
 
-            <button type="submit" class="btn btn-primary">Login</button>
+            <button type="submit" class="btn btn-primary mt-3">Login</button>
         </form>
     </div>
 </body>
