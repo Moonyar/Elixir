@@ -7,6 +7,10 @@
 </head>
 <body>
     {% include 'nav.html' %}
+    {% if current_user.is_authenticated %}
+    Hello, {{ current_user.full_name }}!
+    {% endif %}
+
     <h3 class="mt-4 ms-2 text-center">Welcome, Leader!</h3>
 
     <!----------------- CFL Jumbo -------------------->

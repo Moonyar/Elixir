@@ -4,6 +4,7 @@ import os
 from dotenv import load_dotenv
 
 from sqlalchemy import create_engine, text
+from werkzeug.security import generate_password_hash, check_password_hash
 
 load_dotenv()
 
@@ -89,3 +90,21 @@ def delete_cfl(cfl_id):
     with engine.connect() as conn:
         query = text("DELETE FROM cfls WHERE id = :cfl_id")
         conn.execute(query, {"cfl_id": cfl_id})
+
+def get_user_by_username(username):
+    with engine.connect() as conn:
+        result = conn.execute(text("SELECT * FROM users WHERE username = :username"), {"username": username})
+        row = result.fetchone()
+        return row._asdict() if row else None
+
+def get_user_by_id(user_id):
+    with engine.connect() as conn:
+        result = conn.execute(text("SELECT * FROM users WHERE id = :user_id"), {"user_id": user_id})
+        row = result.fetchone()
+        return row._asdict() if row else None
+
+
+
+
+def verify_password(stored_password, provided_password):
+    return check_password_hash(stored_password, provided_password)
