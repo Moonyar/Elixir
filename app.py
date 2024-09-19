@@ -24,7 +24,7 @@ class User(UserMixin):
 
 @login.user_loader
 def load_user(user_id):
-    user_data = get_user_by_id(user_id)  # You might need to write this function in `database.py`
+    user_data = get_user_by_id(user_id)
     if user_data:
         return User(id=user_data['id'], username=user_data['username'], full_name=user_data['full_name'],
                     position=user_data['position'])
